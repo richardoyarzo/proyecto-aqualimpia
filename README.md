@@ -54,5 +54,42 @@ El análisis se desarrolló siguiendo estos pasos:
 
 Para medir el desempeño del tratamiento se calculó la eficiencia de remoción de DBO:
 
-```text
-eficiencia_DBO = ((DBO_entrada - DBO_salida) / DBO_entrada) * 100
+`eficiencia_DBO = ((DBO_entrada - DBO_salida) / DBO_entrada) * 100`
+
+Este indicador permite conocer qué porcentaje de contaminación fue reducido durante el proceso de tratamiento.
+
+## 7. Resultados esperados
+
+Con el análisis se espera obtener:
+
+Porcentaje de cumplimiento normativo por planta.
+Promedio de DBO de salida por planta.
+Eficiencia promedio de tratamiento.
+Relación entre caudal de entrada y DBO de salida.
+Identificación de plantas con mayor cantidad de incumplimientos.
+
+## 8. Archivos generados
+
+Durante el proyecto se generan archivos de salida para apoyar el trabajo de distintas áreas:
+
+Área de Operaciones
+
+Archivo:
+
+`salida_operaciones.csv`
+
+Incluye datos como fecha, planta, caudal de entrada, DBO de entrada, DBO de salida, energía utilizada, lodos generados y eficiencia del tratamiento.
+
+Área de Gestión Ambiental
+
+Archivo:
+
+`salida_gestion_ambiental.csv`
+
+Incluye fecha, planta, DBO de salida y estado de cumplimiento normativo.
+
+## 9. Conclusión
+
+La documentación técnica permite comprender el proyecto de forma clara y ordenada. En este caso, ayuda a explicar cómo se analizaron los datos de AquaLimpia S. A., qué indicadores se calcularon y cómo los resultados pueden apoyar la toma de decisiones en la empresa.
+
+Además, facilita que el análisis pueda ser revisado, corregido o repetido por otra persona.
