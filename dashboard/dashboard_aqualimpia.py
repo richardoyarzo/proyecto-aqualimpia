@@ -2,10 +2,6 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-# =========================
-# Configuración
-# =========================
-
 st.set_page_config(
     page_title="Dashboard AquaLimpia S.A.",
     layout="wide"
@@ -13,10 +9,6 @@ st.set_page_config(
 
 st.title("Dashboard exploratorio AquaLimpia S. A.")
 st.write("Análisis del desempeño de plantas de tratamiento de aguas residuales.")
-
-# =========================
-# Carga de datos
-# =========================
 
 df = pd.read_excel("data/dataset_set_A_aguas_residuales.xlsx")
 
@@ -32,10 +24,6 @@ df["estado_cumplimiento"] = df["cumplimiento_norma"].map({
     0: "No cumple"
 })
 
-# =========================
-# Filtros
-# =========================
-
 plantas = st.multiselect(
     "Seleccionar planta",
     options=df["planta"].unique(),
@@ -43,10 +31,6 @@ plantas = st.multiselect(
 )
 
 df_filtrado = df[df["planta"].isin(plantas)]
-
-# =========================
-# Indicadores
-# =========================
 
 total_registros = len(df_filtrado)
 cumplimiento_general = df_filtrado["cumplimiento_norma"].mean() * 100
@@ -59,10 +43,6 @@ col1.metric("Total registros", total_registros)
 col2.metric("Cumplimiento general", f"{cumplimiento_general:.1f}%")
 col3.metric("DBO salida promedio", f"{dbo_salida_promedio:.2f} mg/L")
 col4.metric("Eficiencia promedio", f"{eficiencia_promedio:.2f}%")
-
-# =========================
-# Gráficos
-# =========================
 
 resumen = df_filtrado.groupby("planta").agg(
     cumplimiento=("cumplimiento_norma", "mean"),

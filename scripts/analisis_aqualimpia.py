@@ -3,20 +3,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
 
-# =========================
-# 1. Configuración inicial
-# =========================
-
 RUTA_DATOS = Path("data/dataset_set_A_aguas_residuales.xlsx")
 RUTA_OUTPUTS = Path("outputs")
 RUTA_GRAFICOS = RUTA_OUTPUTS / "graficos"
 
 RUTA_OUTPUTS.mkdir(exist_ok=True)
 RUTA_GRAFICOS.mkdir(exist_ok=True)
-
-# =========================
-# 2. Carga de datos
-# =========================
 
 df = pd.read_excel(RUTA_DATOS)
 
@@ -28,10 +20,6 @@ print(df.info())
 
 print("\nValores nulos por columna:")
 print(df.isnull().sum())
-
-# =========================
-# 3. Procesamiento de datos
-# =========================
 
 df["fecha_registro"] = pd.to_datetime(df["fecha_registro"])
 
@@ -52,10 +40,6 @@ df["alerta_operativa"] = np.where(
     "Normal"
 )
 
-# =========================
-# 4. Resumen por planta
-# =========================
-
 resumen_planta = df.groupby("planta").agg(
     registros=("planta", "count"),
     caudal_promedio=("caudal_entrada_m3_d", "mean"),
@@ -73,10 +57,6 @@ print("\nResumen por planta:")
 print(resumen_planta)
 
 resumen_planta.to_csv(RUTA_OUTPUTS / "resumen_por_planta.csv", index=False)
-
-# =========================
-# 5. Archivos para áreas internas
-# =========================
 
 salida_operaciones = df[
     [
@@ -104,10 +84,6 @@ salida_gestion_ambiental = df[
 
 salida_operaciones.to_csv(RUTA_OUTPUTS / "salida_operaciones.csv", index=False)
 salida_gestion_ambiental.to_csv(RUTA_OUTPUTS / "salida_gestion_ambiental.csv", index=False)
-
-# =========================
-# 6. Gráficos exploratorios
-# =========================
 
 plt.figure(figsize=(8, 5))
 plt.bar(resumen_planta["planta"], resumen_planta["cumplimiento_porcentaje"])
